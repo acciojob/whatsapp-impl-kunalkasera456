@@ -81,7 +81,7 @@ public class WhatsappRepository {
         message_list.add(message);
         groupMessageMap.put(group, message_list);
         senderMap.put(message, sender);
-        return message_list.size();
+        return groupMessageMap.get(group).size();
     }
     public String changeAdmin(User approver, User user, Group group) throws Exception {
         //Throw "Group does not exist" if the mentioned group does not exist
