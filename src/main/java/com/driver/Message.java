@@ -7,4 +7,37 @@ public class Message {
     private String content;
     private Date timestamp;
 
+    public Message() {
+
+    }
+    public Message(int id, String content) {
+        this.id = id;
+        this.content = content;
+        Date date = new Date();     // timestamp should be set as the current date.
+        this.timestamp = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }
