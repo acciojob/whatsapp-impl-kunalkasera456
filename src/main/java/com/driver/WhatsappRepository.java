@@ -77,10 +77,12 @@ public class WhatsappRepository {
         if(groupUserMap.get(group).contains(sender) == false) {
             throw new Exception("You are not allowed to send message");
         }
-        List<Message> message_list = new ArrayList<>();
+        List<Message> message_list = groupMessageMap.get(group);
         message_list.add(message);
+
         groupMessageMap.put(group, message_list);
         senderMap.put(message, sender);
+
         return groupMessageMap.get(group).size();
     }
     public String changeAdmin(User approver, User user, Group group) throws Exception {
@@ -94,7 +96,7 @@ public class WhatsappRepository {
         if(adminMap.get(group) != approver) {
             throw new Exception("Approver does not have rights");
         }
-        if(groupUserMap.get(group).contains(user)) {
+        if(!groupUserMap.get(group).contains(user)) {
             throw new Exception("User is not a participant");
         }
         adminMap.replace(group, user);
