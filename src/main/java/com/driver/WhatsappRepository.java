@@ -29,7 +29,7 @@ public class WhatsappRepository {
 
     public String createUser(String name, String mobile) throws Exception {
         if(userMobile.contains(mobile)) {
-            throw new Exception("User already exist");
+            throw new Exception("User already exists");
         }
         User user = new User(name, mobile);
         userMobile.add(mobile);
@@ -53,7 +53,7 @@ public class WhatsappRepository {
             return group;
         } else {
             customGroupCount++;
-            Group group = new Group("Group" + customGroupCount, user.size());
+            Group group = new Group("Group " + customGroupCount, user.size());
             groupUserMap.put(group, user);
             groupMessageMap.put(group, new ArrayList<>());
             adminMap.put(group,user.get(0));
@@ -68,14 +68,14 @@ public class WhatsappRepository {
 
     public int sendMessage(Message message, User sender, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
-        //Throw "Group does not exist" if the sender is not a member of the group
+        //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
 
         if(groupUserMap.containsKey(group) == false) {
             throw new Exception("Group does not exist");
         }
         if(groupUserMap.get(group).contains(sender) == false) {
-            throw new Exception("Group does not exist");
+            throw new Exception("You are not allowed to send message");
         }
         List<Message> message_list = new ArrayList<>();
         message_list.add(message);
